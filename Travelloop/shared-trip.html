@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Trip - Traveloop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="shared-view">
+    <nav class="shared-navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-plane-departure"></i>
+                <span>Traveloop</span>
+            </div>
+            <a href="index.html" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="shared-content">
+        <header class="shared-header">
+            <h1 id="sharedTripTitle">Loading...</h1>
+            <div class="shared-meta">
+                <span id="sharedDestination"></span>
+                <span id="sharedDates"></span>
+            </div>
+        </header>
+
+        <div class="shared-trip-details glass">
+            <div class="shared-section">
+                <h3><i class="fas fa-sticky-note"></i> Description</h3>
+                <p id="sharedDescription">-</p>
+            </div>
+            
+            <div class="shared-section">
+                <h3><i class="fas fa-dollar-sign"></i> Budget</h3>
+                <div id="sharedBudget">-</div>
+            </div>
+
+            <div class="shared-section">
+                <h3><i class="fas fa-route"></i> Itinerary Highlights</h3>
+                <div id="sharedItinerary">-</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/storage.js"></script>
+    <script src="js/trips.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tripId = urlParams.get('id');
+            
+            if (tripId) {
+                loadSharedTrip(tripId);
+            } else {
+                document.body.innerHTML = '<div style="text-align:center;padding:2rem;"><h2>Invalid trip link</h2></div>';
+            }
+        });
+
+        function loadSharedTrip(tripId) {
+            const trip = Trips.getAllTrips().find(t => t.id === tripId);
+            if (!trip) {
+                document.body.innerHTML = '<div style="text-align:center;padding:2rem;"><h2>Trip not found</h2></div>';
+                return;
+            }
+
+            document.getElementById('sharedTripTitle').textContent = trip.name;
+            document.getElementById('sharedDestination').textContent = trip.destination;
+            document.getElementById('sharedDates').textContent = 
+                `${formatDate(trip.startDate)} - ${formatDate(trip.endDate)}`;
+            document.getElementById('sharedDescription').textContent = trip.description || 'No description';
+            
+            const budgetInfo = trip.budget ? `$${trip.budget.toLocaleString()}` : 'Not set';
+            document.getElementById('sharedBudget').innerHTML = `<span class="budget-amount">${budgetInfo}</span>`;
+        }
+    </script>
+</body>
+</html>

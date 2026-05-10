@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget - Traveloop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <!-- Same sidebar as other pages -->
+            <div class="sidebar-header">
+                <i class="fas fa-plane-departure"></i>
+                <span>Traveloop</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+                <a href="my-trips.html" class="nav-item"><i class="fas fa-suitcase"></i><span>My Trips</span></a>
+                <a href="create-trip.html" class="nav-item"><i class="fas fa-plus"></i><span>New Trip</span></a>
+                <div class="nav-divider"></div>
+                <a href="#" class="nav-item" id="themeToggle"><i class="fas fa-moon"></i><span>Dark Mode</span></a>
+                <a href="login.html" class="nav-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header">
+                <div class="trip-header">
+                    <h1 id="budgetTripTitle">Budget Tracker</h1>
+                    <div class="trip-meta">
+                        <span id="budgetTripDestination"></span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="budget-container">
+                <div class="budget-inputs">
+                    <div class="budget-grid">
+                        <div class="budget-item">
+                            <label><i class="fas fa-hotel"></i> Hotel</label>
+                            <input type="number" id="hotelCost" step="0.01" placeholder="0">
+                        </div>
+                        <div class="budget-item">
+                            <label><i class="fas fa-utensils"></i> Food</label>
+                            <input type="number" id="foodCost" step="0.01" placeholder="0">
+                        </div>
+                        <div class="budget-item">
+                            <label><i class="fas fa-car"></i> Transport</label>
+                            <input type="number" id="transportCost" step="0.01" placeholder="0">
+                        </div>
+                        <div class="budget-item">
+                            <label><i class="fas fa-ticket-alt"></i> Activities</label>
+                            <input type="number" id="activitiesCost" step="0.01" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="budget-total">
+                        <div class="total-display">
+                            <span>Total: $<span id="totalCost">0</span></span>
+                            <div class="budget-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                                <span id="budgetRemaining"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="budget-history">
+                    <h3>Expense History</h3>
+                    <div id="expenseList"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/trips.js"></script>
+    <script src="js/budget.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

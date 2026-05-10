@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Traveloop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-plane-departure"></i>
+                <span>Traveloop</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="my-trips.html" class="nav-item">
+                    <i class="fas fa-suitcase"></i>
+                    <span>My Trips</span>
+                </a>
+                <a href="create-trip.html" class="nav-item">
+                    <i class="fas fa-plus"></i>
+                    <span>New Trip</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="#" class="nav-item" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </a>
+                <a href="login.html" class="nav-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Welcome back, <span id="userName">Traveler</span>!</h1>
+                <p>Here's what's happening with your trips</p>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-suitcase"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalTrips">0</h3>
+                        <p>Total Trips</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalBudget">$0</h3>
+                        <p>Total Budget</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="completedItems">0</h3>
+                        <p>Packing Items</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="recent-trips">
+                    <h2>Recent Trips</h2>
+                    <div id="recentTripsList" class="trips-grid">
+                        <!-- Dynamic content -->
+                    </div>
+                    <a href="my-trips.html" class="view-all-btn">View All Trips</a>
+                </div>
+                
+                <div class="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="action-buttons">
+                        <a href="create-trip.html" class="action-btn primary">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>New Trip</span>
+                        </a>
+                        <a href="my-trips.html" class="action-btn">
+                            <i class="fas fa-list"></i>
+                            <span>All Trips</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/trips.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

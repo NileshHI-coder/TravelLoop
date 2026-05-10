@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary - Traveloop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-plane-departure"></i>
+                <span>Traveloop</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="my-trips.html" class="nav-item">
+                    <i class="fas fa-suitcase"></i>
+                    <span>My Trips</span>
+                </a>
+                <a href="create-trip.html" class="nav-item">
+                    <i class="fas fa-plus"></i>
+                    <span>New Trip</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="#" class="nav-item" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </a>
+                <a href="login.html" class="nav-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header">
+                <div class="trip-header">
+                    <h1 id="tripTitle">Loading...</h1>
+                    <div class="trip-meta">
+                        <span id="tripDestination"></span>
+                        <span id="tripDates"></span>
+                        <span id="tripBudget"></span>
+                    </div>
+                </div>
+                <nav class="trip-tabs">
+                    <a href="#" class="tab active" data-tab="itinerary">Itinerary</a>
+                    <a href="budget.html" class="tab" data-tab="budget">Budget</a>
+                    <a href="checklist.html" class="tab" data-tab="checklist">Packing</a>
+                    <a href="notes.html" class="tab" data-tab="notes">Notes</a>
+                </nav>
+            </header>
+
+            <div class="itinerary-container">
+                <div class="itinerary-form" id="addActivityForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar-day"></i> Date</label>
+                            <input type="date" id="activityDate">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> Time</label>
+                            <input type="time" id="activityTime">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-map-marker-alt"></i> Activity</label>
+                        <input type="text" id="activityName" placeholder="e.g., Visit Eiffel Tower">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-sticky-note"></i> Notes</label>
+                        <textarea id="activityNotes" rows="2" placeholder="Additional details..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add Activity</button>
+                        <button type="button" class="btn btn-secondary" id="cancelActivity">Cancel</button>
+                    </div>
+                </div>
+
+                <div id="itineraryList" class="itinerary-timeline">
+                    <!-- Dynamic itinerary items -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/trips.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Page-specific initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTripItinerary();
+        });
+
+        function loadTripItinerary() {
+            const tripId = sessionStorage.getItem('currentTripId');
+            if (!tripId) {
+                window.location.href = 'my-trips.html';
+                return;
+            }
+
+            const trip = Trips.getAllTrips().find(t => t.id === tripId);
+            if (trip) {
+                document.getElementById('tripTitle').textContent = trip.name;
+                document.getElementById('tripDestination').textContent = trip.destination;
+                document.getElementById('tripDates').textContent = 
+                    `${formatDate(trip.startDate)} - ${formatDate(trip.endDate)}`;
+                document.getElementById('tripBudget').textContent = 
+                    trip.budget ? `Budget: $${trip.budget.toLocaleString()}` : '';
+                
+                renderItinerary(trip.itinerary || []);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packing List - Traveloop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar"><!-- Same sidebar --></aside>
+        <main class="main-content">
+            <header class="page-header">
+                <div class="trip-header">
+                    <h1 id="checklistTripTitle">Packing Checklist</h1>
+                    <span id="checklistProgress" class="progress-badge">0%</span>
+                </div>
+            </header>
+
+            <div class="checklist-container">
+                <div class="checklist-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-plus"></i> Add Item</label>
+                        <div class="input-group">
+                            <input type="text" id="newItem" placeholder="e.g., Passport, sunscreen...">
+                            <button id="addItemBtn" class="btn btn-primary btn-sm">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-categories">
+                    <div class="category">
+                        <h3><i class="fas fa-passport"></i> Essentials</h3>
+                        <ul id="essentialsList" class="checklist-items"></ul>
+                    </div>
+                    <div class="category">
+                        <h3><i class="fas fa-shirt"></i> Clothing</h3>
+                        <ul id="clothingList" class="checklist-items"></ul>
+                    </div>
+                    <div class="category">
+                        <h3><i class="fas fa-pills"></i> Toiletries</h3>
+                        <ul id="toiletriesList" class="checklist-items"></ul>
+                    </div>
+                    <div class="category">
+                        <h3><i class="fas fa-camera"></i> Electronics</h3>
+                        <ul id="electronicsList" class="checklist-items"></ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/trips.js"></script>
+    <script src="js/checklist.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
